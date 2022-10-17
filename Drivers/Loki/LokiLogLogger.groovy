@@ -13,7 +13,7 @@
  */
 
 import groovy.transform.Field
-import groovy.json.JsonSlurper
+import groovy.json.*
 
 @Field String VERSION = "1.0.2"
 
@@ -117,6 +117,7 @@ void parse(String description) {
         }
 
         String json = '''{"labels": "{hub_name=\\"'''+labels.hub_name+'''\\",hub_ip=\\"'''+labels.hub_ip+'''\\",hub_fw=\\"'''+labels.hub_fw+'''\\",event_type=\\"'''+labels.event_type+'''\\",event_source=\\"'''+labels.event_source+'''\\",level=\\"'''+labels.level+'''\\",device_id=\\"'''+labels.device_id+'''\\",device_id_net=\\"'''+labels.device_id_net+'''\\",device_name=\\"'''+labels.device_name+'''\\",device_driver=\\"'''+labels.device_driver+'''\\",device_driver_type=\\"'''+labels.device_driver_type+'''\\"}", "entries": [{"ts": "'''+ts+'''", "line": "'''+line+'''"}]}'''
+        // String json = JsonOutput.toJson(['labels': labels, 'entries': ['ts': ts, 'line': line]])
         pushLog(json)
 
       } catch(e) {
